@@ -1,5 +1,6 @@
 package services;
 
+import interfaces.UserServicesInterface;
 import model.User;
 import DAO.UserDAO;
 import javax.servlet.RequestDispatcher;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServices {
+public class UserServices implements UserServicesInterface {
 
     private UserDAO userDAO;
 
@@ -22,6 +23,7 @@ public class UserServices {
         return userDAO;
     }
 
+    @Override
     public void allUser(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         List<User> listUser = dao().selectAllUsers();
@@ -30,14 +32,16 @@ public class UserServices {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void newUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void editUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
+            throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = dao().selectUser(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
@@ -46,8 +50,9 @@ public class UserServices {
 
     }
 
+    @Override
     public void createUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
@@ -56,6 +61,7 @@ public class UserServices {
         response.sendRedirect("list");
     }
 
+    @Override
     public void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
@@ -63,11 +69,12 @@ public class UserServices {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
 
-        User book = new User(id, name, email, country);
-        dao().updateUser(book);
+        User user = new User(id, name, email, country);
+        dao().updateUser(user);
         response.sendRedirect("list");
     }
 
+    @Override
     public void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
