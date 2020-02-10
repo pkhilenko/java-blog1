@@ -40,7 +40,7 @@ public class UserServices implements UserServicesInterface {
     }
 
     @Override
-    public void deleteUser(Long id)throws SQLException {
+    public void deleteUser(Long id) throws SQLException {
         dao().deleteUser(id);
     }
 }

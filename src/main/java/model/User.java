@@ -1,4 +1,5 @@
 package model;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +18,8 @@ public class User {
     @Column(name = "country")
     private String country;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String name, String email, String country) {
         this.name = name;
@@ -33,10 +35,10 @@ public class User {
     }
 
 
-
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -44,18 +46,23 @@ public class User {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getCountry() {
         return country;
     }
+
     public void setCountry(String country) {
         this.country = country;
     }

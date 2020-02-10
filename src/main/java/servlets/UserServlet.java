@@ -44,7 +44,7 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("list");
                     break;
                 case "/delete":
-                    Long id = Long.parseLong(request.getParameter("id"));
+                    long id = Long.parseLong(request.getParameter("id"));
                     userServices.deleteUser(id);
                     response.sendRedirect("list");
                     break;

@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <html>
 
 <head>
@@ -12,11 +11,6 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
-        <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User
-                Management App </a>
-        </div>
-
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/list" class="nav-link">Users</a></li>
         </ul>
@@ -25,8 +19,6 @@
 <br>
 
 <div class="row">
-    <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
-
     <div class="container">
         <h3 class="text-center">List of Users</h3>
         <hr>
@@ -39,16 +31,15 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>ID<c:out value="${16+64*2}" /></th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Country</th>
-                <th>Actions</th>
+                <th colspan="2">Actions</th>
             </tr>
             </thead>
 
             <tbody>
-            <!--   for (Todo todo: todos) {  -->
             <c:forEach var="user" items="${listUser}">
                 <tr>
                     <td>
@@ -63,10 +54,10 @@
                     <td>
                         <c:out value="${user.country}" />
                     </td>
-                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a> </td>
+                    <td><a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
-            <!-- } -->
             </tbody>
 
         </table>

@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private static final String jdbcURL = "jdbc:mysql://localhost:3306/blog";
-    private static final String jdbcUsername = "best";
-    private static final String jdbcPassword = "best";
+    private static final String jdbcURL = "jdbc:mysql://localhost:3306/blog?user=best&password=best&characterEncoding=utf-8";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country FROM users WHERE id = ?";
@@ -98,7 +96,7 @@ public class UserDAO {
     private Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+            connection = DriverManager.getConnection(jdbcURL);
             System.out.println("CONNECTION SUCCESSFULLY");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

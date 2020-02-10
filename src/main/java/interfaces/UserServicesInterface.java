@@ -14,5 +14,5 @@ public interface UserServicesInterface {
 
     void updateUser(User user) throws SQLException;
 
-    void deleteUser(Long id)throws SQLException;
+    void deleteUser(Long id) throws SQLException;
 }
