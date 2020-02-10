@@ -1,6 +1,5 @@
 package servlets;
 
-import DAO.UserDAO;
 import model.User;
 import services.UserServices;
 
@@ -16,8 +15,7 @@ import java.util.List;
 
 @WebServlet("/")
 public class UserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
+    RequestDispatcher dispatcher = null;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,22 +31,44 @@ public class UserServlet extends HttpServlet {
         try {
             switch (action) {
                 case "/new":
-                    userServices.newUser(request, response);
+                    dispatcher = request.getRequestDispatcher("user-form.jsp");
+                    dispatcher.forward(request, response);
                     break;
                 case "/create":
-                    userServices.createUser(request, response);
+                    String name = request.getParameter("name");
+                    String email = request.getParameter("email");
+                    String country = request.getParameter("country");
+                    User newUser = new User(name, email, country);
+
+                    userServices.createUser(newUser);
+                    response.sendRedirect("list");
                     break;
                 case "/delete":
-                    userServices.deleteUser(request, response);
+                    Long id = Long.parseLong(request.getParameter("id"));
+                    userServices.deleteUser(id);
+                    response.sendRedirect("list");
                     break;
                 case "/edit":
-                    userServices.editUser(request, response);
+                    id = Long.parseLong(request.getParameter("id"));
+                    User existingUser = userServices.editUser(id);
+                    dispatcher = request.getRequestDispatcher("user-form.jsp");
+                    request.setAttribute("user", existingUser);
+                    dispatcher.forward(request, response);
                     break;
                 case "/update":
-                    userServices.updateUser(request, response);
+                    id = Long.parseLong(request.getParameter("id"));
+                    name = request.getParameter("name");
+                    email = request.getParameter("email");
+                    country = request.getParameter("country");
+                    User user = new User(id, name, email, country);
+                    userServices.updateUser(user);
+                    response.sendRedirect("list");
                     break;
                 default:
-                    userServices.allUser(request, response);
+                    List<User> listUser = userServices.allUser();
+                    request.setAttribute("listUser", listUser);
+                    dispatcher = request.getRequestDispatcher("user-list.jsp");
+                    dispatcher.forward(request, response);
                     break;
             }
         } catch (SQLException ex) {

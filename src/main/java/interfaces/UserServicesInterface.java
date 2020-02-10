@@ -1,21 +1,18 @@
 package interfaces;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import model.User;
+
 import java.sql.SQLException;
+import java.util.List;
 
 public interface UserServicesInterface {
-    void allUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    List<User> allUser();
 
-    void newUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    User editUser(Long id);
 
-    void editUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void createUser(User newUser);
 
-    void createUser(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void updateUser(User user) throws SQLException;
 
-    void updateUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException;
-
-    void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException;
+    void deleteUser(Long id)throws SQLException;
 }
