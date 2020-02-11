@@ -1,7 +1,7 @@
-package servlets;
+package servlets.user;
 
-import model.User;
-import service.userservice.UserServiceImpl;
+import model.user.User;
+import service.user.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,17 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = { "/list", "/" })
+@WebServlet(urlPatterns = {"/list", "/"})
 public class ListUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = new UserServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         List<User> listUser = userServices.allUser();
         request.setAttribute("listUser", listUser);
         request.setAttribute("rootPath", request.getContextPath());
         dispatcher = request.getRequestDispatcher("user-list.jsp");
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

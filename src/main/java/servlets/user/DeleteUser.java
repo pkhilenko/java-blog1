@@ -1,24 +1,23 @@
-package servlets;
+package servlets.user;
 
-import service.userservice.UserServiceImpl;
+import service.user.UserServiceImpl;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/delete")
 public class DeleteUser extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         UserServiceImpl userServices = new UserServiceImpl();
         long id = Long.parseLong(request.getParameter("id"));
+        userServices.deleteUser(id);
         try {
-            userServices.deleteUser(id);
-        } catch (SQLException e) {
+            response.sendRedirect("list");
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("list");
     }
 }

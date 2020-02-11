@@ -1,10 +1,8 @@
-package service.userservice;
+package service.user;
 
-import dao.UserDaoImpl;
-import service.userservice.UserService;
-import model.User;
+import dao.user.UserDaoImpl;
+import model.user.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -35,12 +33,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) throws SQLException {
+    public void updateUser(User user) {
         dao().updateUser(user);
     }
 
     @Override
-    public void deleteUser(Long id) throws SQLException {
+    public void deleteUser(Long id) {
         dao().deleteUser(id);
     }
 }
