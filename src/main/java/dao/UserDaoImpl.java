@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import model.User;
 
@@ -6,8 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
-    private static final String jdbcURL = "jdbc:mysql://localhost:3306/blog?user=best&password=best&characterEncoding=utf-8";
+public class UserDaoImpl {
+    private static final String jdbcURL = "jdbc:mysql://localhost:3306/blog?user=best&password=best";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country FROM users WHERE id = ?";
@@ -17,7 +17,7 @@ public class UserDAO {
 
     private Connection connection = null;
 
-    public UserDAO() {
+    public UserDaoImpl() {
     }
 
     public void createUser(User user) {

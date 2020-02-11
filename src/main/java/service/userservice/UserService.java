@@ -1,11 +1,11 @@
-package interfaces;
+package service.userservice;
 
 import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface UserServicesInterface {
+public interface UserService {
     List<User> allUser();
 
     User editUser(Long id);

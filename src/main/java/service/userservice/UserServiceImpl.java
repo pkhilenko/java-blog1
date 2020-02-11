@@ -1,21 +1,21 @@
-package services;
+package service.userservice;
 
-import DAO.UserDAO;
-import interfaces.UserServicesInterface;
+import dao.UserDaoImpl;
+import service.userservice.UserService;
 import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServices implements UserServicesInterface {
+public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO;
+    private UserDaoImpl userDAO;
 
-    public UserDAO dao() {
+    public UserDaoImpl dao() {
         if (userDAO != null) {
             return userDAO;
         }
-        userDAO = new UserDAO();
+        userDAO = new UserDaoImpl();
         return userDAO;
     }
 
