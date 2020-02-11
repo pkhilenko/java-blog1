@@ -15,7 +15,7 @@
 <header>
     <nav class="navbar">
         <ul class="navbar-nav">
-            <li><a href="${rootPath}/list" class="nav-link">users</a></li>
+            <li><a href="${rootPath}/list" class="navbar-link">Users</a></li>
         </ul>
     </nav>
 </header>
