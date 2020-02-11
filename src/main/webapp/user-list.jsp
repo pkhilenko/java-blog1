@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
     <title>User Management Application</title>

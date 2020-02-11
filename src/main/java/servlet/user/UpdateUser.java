@@ -23,7 +23,6 @@ public class UpdateUser extends HttpServlet {
         User existingUser = userServices.editUser(id);
         dispatcher = request.getRequestDispatcher("user-form.jsp");
         request.setAttribute("user", existingUser);
-        request.setAttribute("rootPath", request.getContextPath());
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

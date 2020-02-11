@@ -20,7 +20,6 @@ public class CreateUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         dispatcher = request.getRequestDispatcher("user-form.jsp");
-        request.setAttribute("rootPath", request.getContextPath());
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
