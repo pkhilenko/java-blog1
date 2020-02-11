@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @WebServlet("/delete")
 public class DeleteUser extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         UserServiceImpl userServices = new UserServiceImpl();
         long id = Long.parseLong(request.getParameter("id"));
         userServices.deleteUser(id);

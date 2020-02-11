@@ -44,8 +44,16 @@
                     <td>${user.name}</td>
                     <td>${user.email}</td>
                     <td>${user.country}</td>
-                    <td><a href="edit?id=${user.id}">Edit</a></td>
-                    <td><a href="delete?id=${user.id}">Delete</a></td>
+                    <td>
+                        <a href="edit?id=${user.id}" class="btn btn-sm btn-info">Edit</a>
+                    </td>
+                    <td>
+                        <form action="delete" method="post">
+                            <input type="hidden" name="id" value="${user.id}" />
+                            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                        </form>
+
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

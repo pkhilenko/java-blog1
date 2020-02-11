@@ -2,7 +2,6 @@ package service.user;
 
 import model.user.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserService {
@@ -12,7 +11,7 @@ public interface UserService {
 
     void createUser(User newUser);
 
-    void updateUser(User user) throws SQLException;
+    void updateUser(User user);
 
-    void deleteUser(Long id) throws SQLException;
+    void deleteUser(Long id);
 }
