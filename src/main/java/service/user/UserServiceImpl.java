@@ -1,5 +1,6 @@
 package service.user;
 
+import dao.user.UserDao;
 import dao.user.UserDaoImpl;
 import model.user.User;
 
@@ -7,14 +8,14 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDaoImpl userDAO;
+    private UserDao userDao;
 
-    public UserDaoImpl dao() {
-        if (userDAO != null) {
-            return userDAO;
+    public UserDao dao() {
+        if (userDao != null) {
+            return userDao;
         }
-        userDAO = new UserDaoImpl();
-        return userDAO;
+        userDao = new UserDaoImpl();
+        return userDao;
     }
 
     @Override
