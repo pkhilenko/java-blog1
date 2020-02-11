@@ -1,4 +1,4 @@
-package servlets.user;
+package servlet.user;
 
 import service.user.UserServiceImpl;
 
