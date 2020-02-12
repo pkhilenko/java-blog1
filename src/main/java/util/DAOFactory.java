@@ -12,6 +12,7 @@ public class DAOFactory {
 
     public UserDao getDAOFactory() {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(".property");
+        UserDao ud = null;
 
         try {
             property.load(inputStream);
@@ -21,11 +22,12 @@ public class DAOFactory {
         String dao = property.getProperty("dao");
 
         if (dao.equals("jdbcUserDao")) {
-            return new JDBCUserDaoImpl();
+            ud = new JDBCUserDaoImpl();
         }
         if (dao.equals("hibernateUserDao")) {
-            return  new HibernateUserDaoImpl();
+            ud = new HibernateUserDaoImpl();
         }
-            return  new HibernateUserDaoImpl();
+
+        return ud;
     }
 }

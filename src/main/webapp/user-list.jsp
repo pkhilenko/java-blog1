@@ -54,7 +54,6 @@
                             <input type="hidden" name="id" value="${user.id}" />
                             <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
                         </form>
-
                     </td>
                 </tr>
             </c:forEach>

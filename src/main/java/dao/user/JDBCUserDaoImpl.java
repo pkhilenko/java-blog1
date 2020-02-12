@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCUserDaoImpl implements UserDao {
-    private static final String URL = "jdbc:mysql://localhost:3306/blog?user=best&password=best";
-
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id, name, email, country FROM users WHERE id = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM users";
@@ -22,7 +20,6 @@ public class JDBCUserDaoImpl implements UserDao {
     public JDBCUserDaoImpl() {
         this.dbHelper = DBHelper.getInstance();
     }
-
 
     @Override
     public List<User> selectAllUsers() {
