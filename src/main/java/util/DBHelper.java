@@ -6,9 +6,15 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DBHelper {
+    private static final String URL = "jdbc:mysql://localhost:3306/blog?user=best&password=best";
 
     private static SessionFactory sessionFactory;
+    private static Connection jdbcConnection = null;
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -17,7 +23,17 @@ public class DBHelper {
         return sessionFactory;
     }
 
-    @SuppressWarnings("UnusedDeclaration")
+    public static Connection connection() {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                jdbcConnection = DriverManager.getConnection(URL);
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        return jdbcConnection;
+    }
+
+
     private static Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);

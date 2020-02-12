@@ -1,21 +1,16 @@
 package service.user;
 
-import dao.user.JDBCUserDaoImpl;
 import dao.user.UserDao;
-import dao.user.UserDaoImpl;
 import model.user.User;
+import util.DAOFactory;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
-
     public UserDao dao() {
-        if (userDao != null) {
-            return userDao;
-        }
-        userDao = new UserDaoImpl();
+        DAOFactory df =  new DAOFactory();
+        UserDao userDao = df.getDAOFactory();
         return userDao;
     }
 

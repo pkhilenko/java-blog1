@@ -7,14 +7,12 @@ import org.hibernate.Transaction;
 import util.DBHelper;
 
 import javax.persistence.Query;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class HibernateUserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
-    public UserDaoImpl() {
+    public HibernateUserDaoImpl() {
         this.sessionFactory = DBHelper.getSessionFactory();
     }
 
