@@ -18,8 +18,7 @@ public class UserServiceImpl implements UserService {
 
     public UserDao dao() {
         DAOFactory df =  new DAOFactory();
-        UserDao userDao = df.getDAOFactory();
-        return userDao;
+        return df.getDAOFactory();
     }
 
     @Override

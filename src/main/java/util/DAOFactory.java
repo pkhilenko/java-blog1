@@ -11,7 +11,6 @@ public class DAOFactory {
     Properties property = new Properties();
 
     public UserDao getDAOFactory() {
-        String dao = "";
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(".property");
 
         try {
@@ -19,10 +18,13 @@ public class DAOFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        dao = property.getProperty("dao");
+        String dao = property.getProperty("dao");
 
-        if (dao == "jdbcUserDao") {
+        if (dao.equals("jdbcUserDao")) {
             return new JDBCUserDaoImpl();
+        }
+        if (dao.equals("hibernateUserDao")) {
+            return  new HibernateUserDaoImpl();
         }
             return  new HibernateUserDaoImpl();
     }

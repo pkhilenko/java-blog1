@@ -13,7 +13,7 @@ public class HibernateUserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     public HibernateUserDaoImpl() {
-        this.sessionFactory = DBHelper.getSessionFactory();
+        this.sessionFactory = DBHelper.getInstance().getSessionFactory();
     }
 
 

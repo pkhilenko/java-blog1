@@ -17,15 +17,17 @@ public class JDBCUserDaoImpl implements UserDao {
     private static final String UPDATE_USERS_SQL = "UPDATE users SET name = ?, email = ?, country = ? where id = ?";
 
     private Connection connection = null;
+    DBHelper dbHelper;
 
     public JDBCUserDaoImpl() {
+        this.dbHelper = DBHelper.getInstance();
     }
 
 
     @Override
     public List<User> selectAllUsers() {
         List<User> users = new ArrayList<>();
-        connection = DBHelper.getConnection();
+        connection = dbHelper.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -44,7 +46,7 @@ public class JDBCUserDaoImpl implements UserDao {
     @Override
     public User selectUser(Long id) {
         User user = null;
-        connection = DBHelper.getConnection();
+        connection = dbHelper.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setLong(1, id);
             ResultSet rs = preparedStatement.executeQuery();
@@ -63,7 +65,7 @@ public class JDBCUserDaoImpl implements UserDao {
 
     @Override
     public void createUser(User user) {
-        connection = DBHelper.getConnection();
+        connection = dbHelper.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
@@ -76,7 +78,7 @@ public class JDBCUserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        connection = DBHelper.getConnection();
+        connection = dbHelper.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);
             statement.setString(1, user.getName());
@@ -97,7 +99,7 @@ public class JDBCUserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(Long id) {
-        connection = DBHelper.getConnection();
+        connection = dbHelper.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);
             statement.setLong(1, id);
@@ -112,17 +114,5 @@ public class JDBCUserDaoImpl implements UserDao {
             }
         }
     }
-
-
-//    private Connection getConnection() {
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            connection = DriverManager.getConnection(URL);
-//            System.out.println("CONNECTION SUCCESSFULLY");
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return connection;
-//    }
 
 }
