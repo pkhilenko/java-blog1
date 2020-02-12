@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 @WebServlet(urlPatterns = {"/edit", "/update"})
 public class UpdateUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
-    UserServiceImpl userServices = new UserServiceImpl();
+    UserServiceImpl userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {

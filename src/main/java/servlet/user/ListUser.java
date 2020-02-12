@@ -15,7 +15,7 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/list", "/"})
 public class ListUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
-    UserServiceImpl userServices = new UserServiceImpl();
+    UserServiceImpl userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {

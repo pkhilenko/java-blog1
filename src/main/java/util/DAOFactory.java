@@ -8,30 +8,22 @@ import java.io.*;
 import java.util.Properties;
 
 public class DAOFactory {
-     FileInputStream fis;
-     Properties property = new Properties();
-
+    Properties property = new Properties();
 
     public UserDao getDAOFactory() {
         String dao = "";
-
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(".property");
 
         try {
-            InputStream inputStream = getClass()
-                    .getClassLoader().getResourceAsStream(".property");
-
             property.load(inputStream);
-            dao = property.getProperty("dao");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        dao = property.getProperty("dao");
 
-        switch (dao) {
-            case "jdbcUserDao": return new JDBCUserDaoImpl();
-            case "hibernateUserDao": return new HibernateUserDaoImpl();
-            default: return  null;
+        if (dao == "jdbcUserDao") {
+            return new JDBCUserDaoImpl();
         }
+            return  new HibernateUserDaoImpl();
     }
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/delete")
 public class DeleteUser extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        UserServiceImpl userServices = new UserServiceImpl();
+        UserServiceImpl userServices = UserServiceImpl.getInstance();
         long id = Long.parseLong(request.getParameter("id"));
         userServices.deleteUser(id);
         try {

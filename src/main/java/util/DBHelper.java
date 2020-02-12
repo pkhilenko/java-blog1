@@ -16,6 +16,7 @@ public class DBHelper {
     private static SessionFactory sessionFactory;
     private static Connection jdbcConnection = null;
 
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             sessionFactory = createSessionFactory();
@@ -23,7 +24,7 @@ public class DBHelper {
         return sessionFactory;
     }
 
-    public static Connection connection() {
+    public static Connection getConnection() {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 jdbcConnection = DriverManager.getConnection(URL);

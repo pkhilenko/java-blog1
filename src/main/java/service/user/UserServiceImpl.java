@@ -7,6 +7,14 @@ import util.DAOFactory;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    private static UserServiceImpl userServiceImpl;
+    
+    public static UserServiceImpl getInstance() {
+        if (userServiceImpl == null) {
+            userServiceImpl = new UserServiceImpl();
+        }
+        return userServiceImpl;
+    }
 
     public UserDao dao() {
         DAOFactory df =  new DAOFactory();
