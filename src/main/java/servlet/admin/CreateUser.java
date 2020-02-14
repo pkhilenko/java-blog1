@@ -1,4 +1,4 @@
-package servlet.user;
+package servlet.admin;
 
 import model.user.User;
 import service.user.UserServiceImpl;
@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@WebServlet(urlPatterns = {"/new", "/create"})
+@WebServlet(urlPatterns = {"/admin/new", "/admin/create"})
 public class CreateUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
-    UserServiceImpl userServices = UserServiceImpl.getInstance();
+    UserServiceImpl userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        dispatcher = request.getRequestDispatcher("user-form.jsp");
+        dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -37,10 +37,12 @@ public class CreateUser extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        User newUser = new User(name, email, country);
-        userServices.createUser(newUser);
+        String role = request.getParameter("role");
+        String password = request.getParameter("password");
+        User newUser = new User(name, email, country, role, password);
+        userService.createUser(newUser);
         try {
-            response.sendRedirect("list");
+            response.sendRedirect("admin-user-list");
         } catch (IOException e) {
             e.printStackTrace();
         }

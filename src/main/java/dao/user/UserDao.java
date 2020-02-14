@@ -14,4 +14,8 @@ public interface UserDao {
     void updateUser(User user);
 
     void deleteUser(Long id);
+
+    boolean isExistsUser(String email);
+
+    User login(String email, String password);
 }

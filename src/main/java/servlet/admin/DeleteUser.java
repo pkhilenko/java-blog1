@@ -1,4 +1,4 @@
-package servlet.user;
+package servlet.admin;
 
 import service.user.UserServiceImpl;
 
@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class DeleteUser extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         UserServiceImpl userServices = UserServiceImpl.getInstance();
         long id = Long.parseLong(request.getParameter("id"));
         userServices.deleteUser(id);
         try {
-            response.sendRedirect("list");
+            response.sendRedirect("admin-user-list");
         } catch (IOException e) {
             e.printStackTrace();
         }

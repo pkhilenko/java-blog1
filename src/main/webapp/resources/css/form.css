@@ -17,6 +17,8 @@ html, body, * {
 
 header {
     box-sizing: border-box;
+    position: relative;
+    z-index: 100;
     padding: 17px;
     background-color: tomato;
 }
@@ -46,6 +48,15 @@ a {
 
 .card {
     width: 800px;
+    height: 660px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 6px 0px black;
+    background-color: azure;
+}
+
+.card-login {
+    width: 800px;
     height: 460px;
     margin-left: auto;
     margin-right: auto;
@@ -54,6 +65,16 @@ a {
 }
 
 .form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 600px;
+    width: 600px;
+    padding: 15px;
+}
+
+.form-login {
     margin: auto;
     display: flex;
     flex-direction: column;

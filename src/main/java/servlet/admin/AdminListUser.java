@@ -1,4 +1,4 @@
-package servlet.user;
+package servlet.admin;
 
 import model.user.User;
 import service.user.UserServiceImpl;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/list", "/user"})
-public class ListUser extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/admin-user-list", "/admin/user-list", "/admin"})
+public class AdminListUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
 
@@ -21,8 +21,7 @@ public class ListUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         List<User> listUser = userServices.allUser();
         request.setAttribute("listUser", listUser);
-//        request.setAttribute("rootPath", request.getContextPath());
-        dispatcher = request.getRequestDispatcher("user-list.jsp");
+        dispatcher = request.getRequestDispatcher("admin-user-list.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

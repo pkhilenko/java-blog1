@@ -27,7 +27,7 @@
         <h3 class="text-center">List of Users</h3>
         <hr>
         <div class="container text-left">
-            <a href="${rootPath}/new" class="btn btn-success">Add New User</a>
+            <a href="${rootPath}/admin/new" class="btn btn-success">Add New User</a>
         </div>
         <br>
         <table class="table table-bordered">
@@ -38,6 +38,7 @@
                 <th>Email</th>
                 <th>Country</th>
                 <th>Role</th>
+                <th colspan="2">Actions</th>
             </tr>
             </thead>
 
@@ -50,6 +51,15 @@
                     <td>${user.email}</td>
                     <td>${user.country}</td>
                     <td>${user.role}</td>
+                    <td>
+                        <a href="edit?id=${user.id}" class="btn btn-sm btn-info">Edit</a>
+                    </td>
+                    <td>
+                        <form action="delete" method="post">
+                            <input type="hidden" name="id" value="${user.id}" />
+                            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

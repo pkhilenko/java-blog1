@@ -7,7 +7,7 @@
 <head>
     <title>User Management Application</title>
     <style>
-        <%@include file="resources/css/form.css"%>
+        <%@include file="../resources/css/form.css"%>
     </style>
 </head>
 

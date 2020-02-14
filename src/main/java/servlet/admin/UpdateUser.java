@@ -1,4 +1,4 @@
-package servlet.user;
+package servlet.admin;
 
 import model.user.User;
 import service.user.UserServiceImpl;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@WebServlet(urlPatterns = {"/edit", "/update"})
+@WebServlet(urlPatterns = {"/admin/edit", "/admin/update"})
 public class UpdateUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
@@ -21,7 +21,7 @@ public class UpdateUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userServices.editUser(id);
-        dispatcher = request.getRequestDispatcher("user-form.jsp");
+        dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
         request.setAttribute("user", existingUser);
         try {
             dispatcher.forward(request, response);
@@ -41,10 +41,12 @@ public class UpdateUser extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        User user = new User(id, name, email, country);
+        String role = request.getParameter("role");
+        String password = request.getParameter("password");
+        User user = new User(id, name, email, country, role, password);
         userServices.updateUser(user);
         try {
-            response.sendRedirect("list");
+            response.sendRedirect("admin-user-list");
         } catch (IOException e) {
             e.printStackTrace();
         }

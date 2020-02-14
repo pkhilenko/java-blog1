@@ -12,22 +12,23 @@ public class DAOFactory {
 
     public UserDao getDAOFactory() {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(".property");
-        UserDao ud = null;
 
         try {
             property.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         String dao = property.getProperty("dao");
 
-        if (dao.equals("jdbcUserDao")) {
-            ud = new JDBCUserDaoImpl();
-        }
-        if (dao.equals("hibernateUserDao")) {
-            ud = new HibernateUserDaoImpl();
+        switch (dao) {
+            case "jdbcUserDao":
+                return new JDBCUserDaoImpl();
+            case "hibernateUserDao":
+                return new HibernateUserDaoImpl();
+            default:
+                return new HibernateUserDaoImpl();
         }
 
-        return ud;
     }
 }
