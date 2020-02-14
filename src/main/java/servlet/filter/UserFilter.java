@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter(urlPatterns = { "/list", "/user" })
+@WebFilter(urlPatterns = {"/list", "/user"})
 public class UserFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,7 +31,7 @@ public class UserFilter implements Filter {
 
             moveToMenu(req, resp, filterChain, role);
         } else {
-            moveToMenu(req, resp, filterChain,  "unknown");
+            moveToMenu(req, resp, filterChain, "unknown");
         }
 
     }

@@ -32,7 +32,7 @@ public class AdminFilter implements Filter {
 
             moveToMenu(req, resp, filterChain, role);
         } else {
-            moveToMenu(req, resp, filterChain,  "unknown");
+            moveToMenu(req, resp, filterChain, "unknown");
         }
     }
 

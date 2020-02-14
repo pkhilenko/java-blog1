@@ -21,7 +21,6 @@ public class ListUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         List<User> listUser = userServices.allUser();
         request.setAttribute("listUser", listUser);
-//        request.setAttribute("rootPath", request.getContextPath());
         dispatcher = request.getRequestDispatcher("user-list.jsp");
         try {
             dispatcher.forward(request, response);

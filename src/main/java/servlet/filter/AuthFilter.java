@@ -5,7 +5,6 @@ import service.user.UserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +33,7 @@ public class AuthFilter implements Filter {
         String login = req.getParameter("email");
         String password = req.getParameter("password");
         HttpSession session = req.getSession();
-        //
+
         if (nonNull(session) &&
                 nonNull(session.getAttribute("login")) &&
                 nonNull(session.getAttribute("password"))) {
@@ -46,7 +45,7 @@ public class AuthFilter implements Filter {
 
         } else if ((user = userService.login(login, password)) != null) {
 
-            String role =  user.getRole();
+            String role = user.getRole();
 
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("login", login);
@@ -58,8 +57,6 @@ public class AuthFilter implements Filter {
 
             moveToMenu(req, resp, "unknown");
         }
-
-        //
 
     }
 
@@ -80,7 +77,7 @@ public class AuthFilter implements Filter {
 
         } else {
 
-            resp.sendRedirect("login");
+            resp.sendRedirect("/");
         }
     }
 

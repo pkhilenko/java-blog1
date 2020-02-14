@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -37,6 +38,9 @@ public class UpdateUser extends HttpServlet {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
+        HttpSession session = request.getSession();
+        String currentEmail = (String) session.getAttribute("login");
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -44,7 +48,7 @@ public class UpdateUser extends HttpServlet {
         String role = request.getParameter("role");
         String password = request.getParameter("password");
         User user = new User(id, name, email, country, role, password);
-        userServices.updateUser(user);
+        userServices.updateUser(user, currentEmail);
         try {
             response.sendRedirect("admin-user-list");
         } catch (IOException e) {

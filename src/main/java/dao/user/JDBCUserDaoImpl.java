@@ -21,7 +21,7 @@ public class JDBCUserDaoImpl implements UserDao {
     private static final String DELETE_USERS_SQL =
             "DELETE FROM users WHERE id = ?";
     private static final String UPDATE_USERS_SQL =
-            "UPDATE users SET name = ?, email = ?, country = ?, role = ?, WHERE id = ?";
+            "UPDATE users SET name = ?, email = ?, country = ?, role = ?, password = ? WHERE id = ?";
 
     private Connection connection = null;
     DBHelper dbHelper;
@@ -98,7 +98,7 @@ public class JDBCUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user, String currentEmail) {
         connection = dbHelper.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL);
@@ -106,13 +106,16 @@ public class JDBCUserDaoImpl implements UserDao {
             String email = user.getEmail();
             String country = user.getCountry();
             String role = user.getRole();
+            String password = user.getPassword();
+
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, country);
             preparedStatement.setString(4, role);
-            preparedStatement.setLong(5, user.getId());
+            preparedStatement.setString(5, password);
+            preparedStatement.setLong(6, user.getId());
 
-            if (isExistsUser(user.getEmail())) {
+            if (isExistsUser(email) && !email.equals(currentEmail)) {
                 preparedStatement.close();
             } else {
                 preparedStatement.executeUpdate();
