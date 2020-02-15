@@ -27,7 +27,7 @@
             <div class="form-group">
                 <caption>
                     <h2>
-                         Login
+                        Login
                     </h2>
                 </caption>
             </div>

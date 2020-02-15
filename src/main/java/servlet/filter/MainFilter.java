@@ -13,22 +13,18 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter("/login")
-public class AuthFilter implements Filter {
+@WebFilter("/")
+public class MainFilter implements Filter {
     private UserService userService = UserServiceImpl.getInstance();
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        String login = req.getParameter("email");
-        String password = req.getParameter("password");
         HttpSession session = req.getSession();
 
         User user = null;
@@ -42,7 +38,6 @@ public class AuthFilter implements Filter {
 
     }
 
-
     private void moveToMenu(HttpServletRequest req, HttpServletResponse resp, String role)
             throws ServletException, IOException {
         if (role.equals("admin")) {
@@ -53,6 +48,7 @@ public class AuthFilter implements Filter {
             resp.sendRedirect("/");
         }
     }
+
 
     @Override
     public void destroy() {
