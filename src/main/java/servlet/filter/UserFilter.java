@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter(urlPatterns = {"/list", "/user"})
+@WebFilter("/user")
 public class UserFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

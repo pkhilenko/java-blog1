@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@WebServlet(urlPatterns = {"/admin/edit", "/admin/update"})
+@WebServlet("/admin/edit")
 public class UserEditServlet extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
@@ -50,7 +50,7 @@ public class UserEditServlet extends HttpServlet {
         User user = new User(id, name, email, country, role, password);
         userServices.updateUser(user, currentEmail);
         try {
-            response.sendRedirect("admin-user-list");
+            response.sendRedirect("/admin/");
         } catch (IOException e) {
             e.printStackTrace();
         }

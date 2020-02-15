@@ -42,7 +42,7 @@ public class UserNewServlet extends HttpServlet {
         User newUser = new User(name, email, country, role, password);
         userService.createUser(newUser);
         try {
-            response.sendRedirect("admin-user-list");
+            response.sendRedirect("/admin/");
         } catch (IOException e) {
             e.printStackTrace();
         }

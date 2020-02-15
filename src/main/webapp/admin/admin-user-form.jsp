@@ -26,10 +26,10 @@
 <div class="container">
     <div class="card">
         <c:if test="${user != null}">
-        <form class="form" action="update" method="post">
+        <form class="form" action="/admin/edit" method="post">
             </c:if>
             <c:if test="${user == null}">
-            <form class="form" action="create" method="post">
+            <form class="form" action="/admin/new" method="post">
                 </c:if>
                 <div class="form-group">
                     <caption>

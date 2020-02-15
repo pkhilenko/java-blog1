@@ -49,7 +49,7 @@ public class AdminFilter implements Filter {
 
         } else if (role.equals("user")) {
 
-            resp.sendRedirect("../list");
+            resp.sendRedirect("../user");
 
         } else {
 

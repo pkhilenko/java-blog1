@@ -15,7 +15,7 @@ public class UserDeleteServlet extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         userServices.deleteUser(id);
         try {
-            response.sendRedirect("admin-user-list");
+            response.sendRedirect("/admin/");
         } catch (IOException e) {
             e.printStackTrace();
         }
