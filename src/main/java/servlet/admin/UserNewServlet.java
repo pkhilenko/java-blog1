@@ -20,7 +20,7 @@ public class UserNewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = null;
-        dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
+        dispatcher = request.getRequestDispatcher("admin-new-user-form.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

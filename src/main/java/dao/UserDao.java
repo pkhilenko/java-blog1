@@ -11,7 +11,7 @@ public interface UserDao {
 
     void createUser(User user);
 
-    void updateUser(User user, String currentEmail);
+    void updateUser(User user);
 
     void deleteUser(Long id);
 

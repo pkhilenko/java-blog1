@@ -51,11 +51,12 @@ public class HibernateUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user, String currentEmail) {
+    public void updateUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        User userBefore = selectUser(user.getId());
         String newEmail = user.getEmail();
-        if (isExistsUser(newEmail) && !newEmail.equals(currentEmail)) {
+        if (isExistsUser(newEmail) && !newEmail.equals(userBefore.getEmail())) {
             transaction.rollback();
         } else {
             session.update(user);

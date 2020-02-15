@@ -98,12 +98,13 @@ public class JDBCUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user, String currentEmail) {
+    public void updateUser(User user) {
         connection = dbHelper.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL);
             String name = user.getName();
             String email = user.getEmail();
+            String oldEmail = selectUser(user.getId()).getEmail();
             String country = user.getCountry();
             String role = user.getRole();
             String password = user.getPassword();
@@ -115,7 +116,7 @@ public class JDBCUserDaoImpl implements UserDao {
             preparedStatement.setString(5, password);
             preparedStatement.setLong(6, user.getId());
 
-            if (isExistsUser(email) && !email.equals(currentEmail)) {
+            if (isExistsUser(email) && !email.equals(oldEmail)) {
                 preparedStatement.close();
             } else {
                 preparedStatement.executeUpdate();

@@ -23,8 +23,8 @@ public class UserEditServlet extends HttpServlet {
         RequestDispatcher dispatcher = null;
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userServices.editUser(id);
-        dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
-        request.setAttribute("user", existingUser);
+        dispatcher = request.getRequestDispatcher("admin-edit-user-form.jsp");
+        request.setAttribute("existingUser", existingUser);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -41,7 +41,6 @@ public class UserEditServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        String currentEmail = (String) session.getAttribute("login");
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -49,7 +48,7 @@ public class UserEditServlet extends HttpServlet {
         String role = request.getParameter("role");
         String password = request.getParameter("password");
         User user = new User(id, name, email, country, role, password);
-        userServices.updateUser(user, currentEmail);
+        userServices.updateUser(user);
         try {
             response.sendRedirect("/admin/");
         } catch (IOException e) {

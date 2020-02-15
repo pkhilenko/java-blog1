@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user, String currentEmail) {
-        dao.updateUser(user, currentEmail);
+    public void updateUser(User user) {
+        dao.updateUser(user);
     }
 
     @Override
