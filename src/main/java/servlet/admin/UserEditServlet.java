@@ -15,11 +15,11 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet("/admin/edit")
 public class UserEditServlet extends HttpServlet {
-    RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = null;
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userServices.editUser(id);
         dispatcher = request.getRequestDispatcher("admin-user-form.jsp");

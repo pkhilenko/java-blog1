@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@WebServlet(urlPatterns = {"/admin/new", "/admin/create"})
+@WebServlet("/admin/new")
 public class UserNewServlet extends HttpServlet {
-    RequestDispatcher dispatcher = null;
     UserServiceImpl userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = null;
         dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
         try {
             dispatcher.forward(request, response);

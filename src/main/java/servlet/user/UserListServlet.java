@@ -14,11 +14,11 @@ import java.util.List;
 
 @WebServlet("/user")
 public class UserListServlet extends HttpServlet {
-    RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = null;
         List<User> listUser = userServices.allUser();
         request.setAttribute("listUser", listUser);
         dispatcher = request.getRequestDispatcher("user-list.jsp");
