@@ -1,5 +1,7 @@
 package servlet.filter;
 
+import model.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +25,10 @@ public class UserFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
+        User user = null;
 
-        if (nonNull(session) &&
-                nonNull(session.getAttribute("login")) &&
-                nonNull(session.getAttribute("password"))) {
-            String role = session.getAttribute("role").toString();
+        if (nonNull(session) && nonNull(user = (User) session.getAttribute("user"))) {
+            String role = user.getRole();
 
             moveToMenu(req, resp, filterChain, role);
         } else {

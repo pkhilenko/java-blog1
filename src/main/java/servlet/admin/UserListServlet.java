@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet("/admin/")
 public class UserListServlet extends HttpServlet {
-    UserService userServices = UserServiceImpl.getInstance();
+    private UserService userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {

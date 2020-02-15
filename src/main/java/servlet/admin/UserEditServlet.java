@@ -1,6 +1,7 @@
 package servlet.admin;
 
 import model.User;
+import service.UserService;
 import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +16,7 @@ import java.io.UnsupportedEncodingException;
 
 @WebServlet("/admin/edit")
 public class UserEditServlet extends HttpServlet {
-    UserServiceImpl userServices = UserServiceImpl.getInstance();
+    private UserService userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
