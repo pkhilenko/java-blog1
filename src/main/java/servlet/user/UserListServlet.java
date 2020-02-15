@@ -1,7 +1,7 @@
 package servlet.user;
 
-import model.user.User;
-import service.user.UserServiceImpl;
+import model.User;
+import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/list", "/user"})
-public class ListUser extends HttpServlet {
+public class UserListServlet extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserServiceImpl userServices = UserServiceImpl.getInstance();
 

@@ -71,9 +71,10 @@
 
                 <div class="form-group">
                     <label>role</label>
-                    <select value="${user.role}" class="form-control" name="role">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                    <select class="form-control" name="role">
+                        <option value="${user.role}">${user.role}</option>
+                        <option value="user">user</option>
+                        <option value="admin">admin</option>
                     </select>
                 </div>
 

@@ -1,8 +1,8 @@
 package servlet.admin;
 
-import model.user.User;
-import service.user.UserService;
-import service.user.UserServiceImpl;
+import model.User;
+import service.UserService;
+import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/admin/admin-user-list", "/admin/user-list", "/admin/"})
-public class AdminListUser extends HttpServlet {
+public class UserListServlet extends HttpServlet {
     RequestDispatcher dispatcher = null;
     UserService userServices = UserServiceImpl.getInstance();
 

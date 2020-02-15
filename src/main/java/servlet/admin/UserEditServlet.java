@@ -1,7 +1,7 @@
 package servlet.admin;
 
-import model.user.User;
-import service.user.UserServiceImpl;
+import model.User;
+import service.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-@WebServlet(urlPatterns = {"/admin/new", "/admin/create"})
-public class CreateUser extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/edit", "/admin/update"})
+public class UserEditServlet extends HttpServlet {
     RequestDispatcher dispatcher = null;
-    UserServiceImpl userService = UserServiceImpl.getInstance();
+    UserServiceImpl userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        long id = Long.parseLong(request.getParameter("id"));
+        User existingUser = userServices.editUser(id);
         dispatcher = request.getRequestDispatcher("admin-user-form.jsp");
+        request.setAttribute("user", existingUser);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -34,13 +38,17 @@ public class CreateUser extends HttpServlet {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
+        HttpSession session = request.getSession();
+        String currentEmail = (String) session.getAttribute("login");
+        long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         String role = request.getParameter("role");
         String password = request.getParameter("password");
-        User newUser = new User(name, email, country, role, password);
-        userService.createUser(newUser);
+        User user = new User(id, name, email, country, role, password);
+        userServices.updateUser(user, currentEmail);
         try {
             response.sendRedirect("admin-user-list");
         } catch (IOException e) {

@@ -1,8 +1,8 @@
 package util;
 
-import dao.user.HibernateUserDaoImpl;
-import dao.user.JDBCUserDaoImpl;
-import dao.user.UserDao;
+import dao.HibernateUserDaoImpl;
+import dao.JDBCUserDaoImpl;
+import dao.UserDao;
 
 import java.io.*;
 import java.util.Properties;
