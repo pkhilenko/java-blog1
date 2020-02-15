@@ -65,18 +65,11 @@ public class AuthFilter implements Filter {
                             HttpServletResponse resp,
                             String role)
             throws ServletException, IOException {
-
-
         if (role.equals("admin")) {
-
             resp.sendRedirect("admin/admin-user-list");
-
         } else if (role.equals("user")) {
-
             resp.sendRedirect("list");
-
         } else {
-
             resp.sendRedirect("/");
         }
     }

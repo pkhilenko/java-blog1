@@ -21,7 +21,7 @@ public class HibernateUserDaoImpl implements UserDao {
     public List<User> selectAllUsers() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<User> users = session.createQuery("select u FROM User u", User.class).list();
+        List<User> users = session.createQuery("SELECT u FROM User u", User.class).list();
         transaction.commit();
         session.close();
         return users;
@@ -90,7 +90,7 @@ public class HibernateUserDaoImpl implements UserDao {
     public User login(String email, String password) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<User> user = session.createQuery("SELECT u FROM User u WHERE u.email = :email and u.password = :password", User.class)
+        List<User> user = session.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class)
                 .setParameter("email", email).setParameter("password", password).list();
         if (user.isEmpty()) {
             transaction.rollback();

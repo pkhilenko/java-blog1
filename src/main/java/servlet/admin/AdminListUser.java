@@ -1,6 +1,7 @@
 package servlet.admin;
 
 import model.user.User;
+import service.user.UserService;
 import service.user.UserServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -12,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/admin/admin-user-list", "/admin/user-list", "/admin"})
+@WebServlet(urlPatterns = {"/admin/admin-user-list", "/admin/user-list", "/admin/"})
 public class AdminListUser extends HttpServlet {
     RequestDispatcher dispatcher = null;
-    UserServiceImpl userServices = UserServiceImpl.getInstance();
+    UserService userServices = UserServiceImpl.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
