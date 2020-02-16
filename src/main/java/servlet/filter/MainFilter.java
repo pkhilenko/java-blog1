@@ -15,7 +15,6 @@ import static java.util.Objects.nonNull;
 
 @WebFilter("/")
 public class MainFilter implements Filter {
-    private UserService userService = UserServiceImpl.getInstance();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

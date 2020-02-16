@@ -67,7 +67,7 @@
             <label>role</label>
             <select class="form-control" name="role">
                 <option value="${existingUser.role}">${existingUser.role}</option>
-                <option value="existingUser">existingUser</option>
+                <option value="user">user</option>
                 <option value="admin">admin</option>
             </select>
         </div>

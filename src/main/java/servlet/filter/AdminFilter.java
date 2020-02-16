@@ -35,23 +35,13 @@ public class AdminFilter implements Filter {
         }
     }
 
-    private void moveToMenu(HttpServletRequest req,
-                            HttpServletResponse resp,
-                            FilterChain filterChain,
-                            String role)
+    private void moveToMenu(HttpServletRequest req, HttpServletResponse resp, FilterChain filterChain, String role)
             throws ServletException, IOException {
-
-
         if (role.equals("admin")) {
-
             filterChain.doFilter(req, resp);
-
         } else if (role.equals("user")) {
-
             resp.sendRedirect("../user");
-
         } else {
-
             resp.sendRedirect("../");
         }
     }

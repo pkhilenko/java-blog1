@@ -40,7 +40,6 @@ public class UserEditServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        HttpSession session = request.getSession();
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");

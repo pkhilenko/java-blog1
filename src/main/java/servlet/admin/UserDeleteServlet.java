@@ -1,5 +1,6 @@
 package servlet.admin;
 
+import service.UserService;
 import service.UserServiceImpl;
 
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,7 @@ import java.io.IOException;
 @WebServlet("/admin/delete")
 public class UserDeleteServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        UserServiceImpl userServices = UserServiceImpl.getInstance();
+        UserService userServices = UserServiceImpl.getInstance();
         long id = Long.parseLong(request.getParameter("id"));
         userServices.deleteUser(id);
         try {

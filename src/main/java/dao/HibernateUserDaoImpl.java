@@ -16,7 +16,6 @@ public class HibernateUserDaoImpl implements UserDao {
         this.sessionFactory = DBHelper.getInstance().getSessionFactory();
     }
 
-
     @Override
     public List<User> selectAllUsers() {
         Session session = sessionFactory.openSession();

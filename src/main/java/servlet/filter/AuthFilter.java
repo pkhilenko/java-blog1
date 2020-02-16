@@ -27,8 +27,6 @@ public class AuthFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        String login = req.getParameter("email");
-        String password = req.getParameter("password");
         HttpSession session = req.getSession();
 
         User user = null;
@@ -41,7 +39,6 @@ public class AuthFilter implements Filter {
         }
 
     }
-
 
     private void moveToMenu(HttpServletRequest req, HttpServletResponse resp, String role)
             throws ServletException, IOException {

@@ -19,9 +19,7 @@ public class UserFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest,
-                         ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
@@ -29,7 +27,6 @@ public class UserFilter implements Filter {
 
         if (nonNull(session) && nonNull(user = (User) session.getAttribute("user"))) {
             String role = user.getRole();
-
             moveToMenu(req, resp, filterChain, role);
         } else {
             moveToMenu(req, resp, filterChain, "unknown");
@@ -37,19 +34,11 @@ public class UserFilter implements Filter {
 
     }
 
-    private void moveToMenu(HttpServletRequest req,
-                            HttpServletResponse resp,
-                            FilterChain filterChain,
-                            String role)
+    private void moveToMenu(HttpServletRequest req, HttpServletResponse resp, FilterChain filterChain, String role)
             throws ServletException, IOException {
-
-
         if (role.equals("admin") || role.equals("user")) {
-
             filterChain.doFilter(req, resp);
-
         } else {
-
             resp.sendRedirect("/");
         }
     }

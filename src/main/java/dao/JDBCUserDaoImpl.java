@@ -23,8 +23,8 @@ public class JDBCUserDaoImpl implements UserDao {
     private static final String UPDATE_USERS_SQL =
             "UPDATE users SET name = ?, email = ?, country = ?, role = ?, password = ? WHERE id = ?";
 
-    private Connection connection = null;
-    DBHelper dbHelper;
+    Connection connection = null;
+    private DBHelper dbHelper;
 
     public JDBCUserDaoImpl() {
         this.dbHelper = DBHelper.getInstance();
