@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter("/login")
+@WebFilter(urlPatterns = { "/login", "/" })
 public class AuthFilter implements Filter {
     private UserService userService = UserServiceImpl.getInstance();
 
